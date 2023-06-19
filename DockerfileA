@@ -1,0 +1,11 @@
+# Use a base image with Java and other necessary dependencies
+FROM openjdk:11
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application JAR file into the container
+COPY my-project-1.0.0.jar /app/my-project-1.0.0.jar
+
+# Specify the command to run the application
+CMD ["java", "-jar", "my-project-1.0.0.jar"]

@@ -1,0 +1,19 @@
+# Use a base image with Java and other necessary dependencies
+FROM openjdk:11
+
+# Download and extract Kafka binaries
+RUN wget https://downloads.apache.org/kafka/2.8.0/kafka_2.13-2.8.0.tgz && \
+    tar -xzf kafka_2.13-2.8.0.tgz && \
+    rm kafka_2.13-2.8.0.tgz
+
+# Set the working directory inside the container
+WORKDIR /kafka_2.13-2.8.0
+
+# Copy the Kafka configuration file into the container
+COPY server.properties /kafka_2.13-2.8.0/config/server.properties
+
+# Expose the necessary ports
+EXPOSE 9092
+
+# Specify the command to start Kafka
+CMD ["bin/kafka-server-start.sh", "config/server.properties"]
